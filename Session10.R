@@ -54,17 +54,44 @@ body=str_sub(emails[1],start=843)
 
 cat(head)
 cat(body)
-
-head_and_body=str_sub(emails[1], start=c(1,843), end=c(842))
+nchar(emails[1])
+head_and_body=str_sub(emails[1], start=c(1,843), end=c(842,1334))
 cat(head_and_body)
 
 #10
 
 sep=str_locate(emails,"\n\n")
 head=str_sub(emails[1],start=sep[1,], end=sep[,1])
-body=str_sub(emails[1],start=sep[,2])
+body=str_sub(emails,start=sep[,2])
 
 
+#1
+fruit=c("apple", "banana", "pear", "pineapple")
+
+#2
+str_detect(fruit,"a") # it contains a
+str_detect(fruit,"^a") # it starts with a
+str_detect(fruit,"a$") # it finishes with a
+str_detect(fruit,"[aeiou]") # it contains any of the letters 
+str_detect(fruit,"[a-d]") # it contains any letter from a to d
+str_detect(fruit,"[0-9]") # it contains any letter from a to d
+
+str_detect(fruit,"^a[a-z]*e$") # it starts with a
+str_detect(fruit,"^a.*e$") # . could be any character or number
+
+#4
+
+phone=c("(213) 740 4826","213-740-4826")
+
+str_detect(phone,"[0-9]{3} [0-9]{3} [0-9]{4}")
+str_detect(phone,"[0-9]{3}[- ]?[0-9]{3}[- ]?[0-9]{4}")
+str_detect(phone,"[0-9]{3} ?-?[0-9]{3} ?-?[0-9]{4}")
+str_detect(phone,"[(]?[0-9]{3}[)]? ?-?[0-9]{3} ?-?[0-9]{4}")
+
+
+#5
+
+str_extract_all(body, "[(]?[0-9]{3}[)]? ?-?[0-9]{3} ?-?[0-9]{4}")
 
 
 
